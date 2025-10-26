@@ -1,43 +1,129 @@
-# Mintlify Starter Kit
+# PowerShell Starter Kit
 
-Use the starter kit to get your docs deployed and ready to customize.
+Use this starter kit to learn how to work with PowerShell, execute commands, write scripts, and customize your environment.
 
-Click the green **Use this template** button at the top of this repo to copy the Mintlify starter kit. The starter kit contains examples with
+This guide includes examples for:
 
-- Guide pages
-- Navigation
-- Customizations
-- API reference pages
-- Use of popular components
+- Basic PowerShell commands
+- Navigation within the file system
+- Script creation
+- Environment customization
+- Use of common cmdlets
 
-**[Follow the full quickstart guide](https://starter.mintlify.com/quickstart)**
+---
 
-## Development
+## Quickstart
 
-Install the [Mintlify CLI](https://www.npmjs.com/package/mint) to preview your documentation changes locally. To install, use the following command:
+### 1. Open PowerShell
 
-```
-npm i -g mint
-```
-
-Run the following command at the root of your documentation, where your `docs.json` is located:
+Press **Windows + X** → select **Windows PowerShell** or **Terminal (PowerShell)**.\
+You can also open PowerShell via the Start menu search by typing:
 
 ```
-mint dev
+powershell
 ```
 
-View your local preview at `http://localhost:3000`.
+---
 
-## Publishing changes
+### 2. Try basic commands
 
-Install our GitHub app from your [dashboard](https://dashboard.mintlify.com/settings/organization/github-app) to propagate changes from your repo to your deployment. Changes are deployed to production automatically after pushing to the default branch.
+| Command            | Description                    |
+| :----------------- | :----------------------------- |
+| `Get-Help`         | Displays help for commands     |
+| `Get-Command`      | Lists all available cmdlets    |
+| `Get-Service`      | Shows active Windows services  |
+| `Get-Process`      | Lists running processes        |
+| `Get-Location`     | Displays the current directory |
+| `Set-Location C:\` | Changes to another directory   |
 
-## Need help?
+Tip: Add the `-Online` parameter to `Get-Help` to open the documentation in your browser.
 
-### Troubleshooting
+---
 
-- If your dev environment isn't running: Run `mint update` to ensure you have the most recent version of the CLI.
-- If a page loads as a 404: Make sure you are running in a folder with a valid `docs.json`.
+### 3. Create scripts
 
-### Resources
-- [Mintlify documentation](https://mintlify.com/docs)
+PowerShell scripts use the `.ps1` file extension.\
+Example script:
+
+```
+Write-Host "Hello, PowerShell!"
+```
+
+Save this as `hello.ps1` and run it with:
+
+```
+.\hello.ps1
+```
+
+If you receive an error about execution policies, enable script execution with:
+
+```
+Set-ExecutionPolicy RemoteSigned
+```
+
+Only do this if you understand the security implications.
+
+---
+
+### 4. Install modules
+
+Use the PowerShell Gallery to install modules:
+
+```
+Install-Module -Name Az -Scope CurrentUser
+```
+
+To update a module:
+
+```
+Update-Module -Name Az
+```
+
+---
+
+### 5. Test scripts locally
+
+You can test PowerShell scripts directly by navigating to the directory containing your script and running:
+
+```
+pwsh .\myScript.ps1
+```
+
+Or start an interactive PowerShell session:
+
+```
+pwsh
+```
+
+---
+
+## Deployment and Automation
+
+If you are using PowerShell scripts in a project or automation pipeline (for example, GitHub Actions or Azure DevOps):
+
+1. Add your script to your repository
+2. Commit and push it
+3. Reference it in your workflow configuration, for example:
+
+```
+- name: Run PowerShell script
+  run: pwsh ./scripts/deploy.ps1
+```
+
+---
+
+## Troubleshooting
+
+| Issue                   | Solution                                               |
+| :---------------------- | :----------------------------------------------------- |
+| Script does not run     | Check your execution policy with `Set-ExecutionPolicy` |
+| Module not found        | Run `Install-Module <ModuleName>`                      |
+| PowerShell not starting | Run as Administrator or check your PATH variables      |
+
+---
+
+## Resources
+
+- Official PowerShell Documentation
+- PowerShell Gallery
+- [PowerShell GitHub Repository](https://github.com/PowerShell/PowerShell)
